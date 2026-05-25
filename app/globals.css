@@ -1,0 +1,159 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-primary: #101828;
+  --color-primary-rgb: 16 24 40;
+  --color-secondary: #4f46e5;
+  --color-secondary-rgb: 79 70 229;
+  --color-btn: #4f46e5;
+  --color-btn-rgb: 79 70 229;
+  --color-btn-hover: #3730a3;
+  --color-btn-hover-rgb: 55 48 163;
+  --color-accent: #14b8a6;
+  --color-accent-rgb: 20 184 166;
+  --color-text-primary: #0f172a;
+  --color-text-primary-rgb: 15 23 42;
+  --color-text-secondary: #526173;
+  --color-text-secondary-rgb: 82 97 115;
+  --color-border: #dbe5f0;
+  --color-border-rgb: 219 229 240;
+  --color-success: #10b981;
+  --color-success-rgb: 16 185 129;
+  --color-error: #e11d48;
+  --color-error-rgb: 225 29 72;
+  --color-bg: #f5f7fb;
+  --color-bg-rgb: 245 247 251;
+  --color-card-bg: #ffffff;
+  --color-card-bg-rgb: 255 255 255;
+  --color-muted: #eef4ff;
+  --color-muted-rgb: 238 244 255;
+  --color-gold: #f59e0b;
+  --color-gold-rgb: 245 158 11;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply font-body text-text-primary antialiased;
+    min-height: 100vh;
+    overflow-x: hidden;
+    background:
+      radial-gradient(circle at top left, rgba(79, 70, 229, 0.16), transparent 32rem),
+      radial-gradient(circle at top right, rgba(20, 184, 166, 0.14), transparent 30rem),
+      linear-gradient(180deg, #fbfdff 0%, var(--color-bg) 42%, #eef4ff 100%);
+    line-height: 1.6;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-heading;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+  }
+
+  h1 {
+    @apply text-[36px] font-bold md:text-[56px] lg:text-[64px];
+  }
+
+  h2 {
+    @apply text-[28px] font-semibold md:text-[42px];
+  }
+
+  h3 {
+    @apply text-[20px] md:text-[24px] font-semibold;
+  }
+
+  p {
+    max-width: 680px;
+  }
+
+  ::selection {
+    background: color-mix(in srgb, var(--color-secondary) 20%, transparent);
+    color: var(--color-primary);
+  }
+}
+
+@layer utilities {
+  .mesh-bg {
+    position: relative;
+    background-color: transparent;
+    background-image:
+      radial-gradient(at 18% 18%, rgba(79, 70, 229, 0.16) 0px, transparent 38%),
+      radial-gradient(at 84% 12%, rgba(20, 184, 166, 0.16) 0px, transparent 34%),
+      radial-gradient(at 70% 86%, rgba(245, 158, 11, 0.12) 0px, transparent 32%),
+      linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(238, 244, 255, 0.74));
+  }
+
+  .glass-card {
+    border: 1px solid rgba(255, 255, 255, 0.72);
+    background: rgba(255, 255, 255, 0.78);
+    box-shadow: 0 24px 70px rgba(16, 24, 40, 0.12);
+    backdrop-filter: blur(22px);
+  }
+
+  .section-shell {
+    @apply mx-auto max-w-7xl px-4 md:px-6;
+  }
+
+  .section-kicker {
+    @apply mb-3 inline-flex w-fit items-center rounded-full border border-secondary/20 bg-secondary/10 px-4 py-1.5 text-xs font-bold uppercase tracking-[0.22em] text-secondary;
+  }
+
+  .gradient-text {
+    background: linear-gradient(135deg, var(--color-secondary), var(--color-accent));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .premium-ring {
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.9),
+      0 1px 2px rgba(16, 24, 40, 0.04),
+      0 20px 60px rgba(79, 70, 229, 0.12);
+  }
+
+  .soft-input {
+    @apply w-full rounded-2xl border border-border bg-white/90 px-4 py-3 text-text-primary shadow-sm transition-all placeholder:text-slate-400 focus:border-secondary focus:outline-none focus:ring-4 focus:ring-secondary/20;
+  }
+
+  .orb {
+    @apply pointer-events-none absolute rounded-full blur-3xl;
+  }
+
+  .prose-content p {
+    @apply mb-5 text-[15px] leading-7 text-text-secondary md:text-base md:leading-8;
+    max-width: none;
+  }
+
+  .prose-content h2 {
+    @apply mb-4 mt-10 text-[24px] text-text-primary md:text-[30px];
+  }
+
+  .prose-content h3 {
+    @apply mb-3 mt-8 text-text-primary;
+  }
+
+  .prose-content ul {
+    @apply list-disc pl-6 mb-4 text-text-secondary;
+  }
+
+  .prose-content li {
+    @apply mb-2;
+  }
+
+  .prose-content a {
+    @apply font-semibold text-secondary decoration-secondary/30 underline-offset-4 transition-colors hover:text-btn-hover hover:underline;
+  }
+
+  .prose-content {
+    @apply rounded-[2rem] border border-white/70 bg-white/70 p-6 shadow-card backdrop-blur md:p-10;
+  }
+}
