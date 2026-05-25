@@ -1,6 +1,5 @@
 "use client";
 
-import { AnimatePresence, motion } from "framer-motion";
 import { Calculator, Menu, X } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -181,18 +180,16 @@ export default function Header() {
         </div>
       </header>
 
-      <AnimatePresence>
-        {mobileOpen && (
-          <MobileMenu
-            onClose={() => setMobileOpen(false)}
-            navLinks={navLinks}
-            ctaLabel={ctaLabel}
-            activeHref={activeHref}
-            language={language}
-            onLanguageChange={handleLanguageChange}
-          />
-        )}
-      </AnimatePresence>
+      {mobileOpen && (
+        <MobileMenu
+          onClose={() => setMobileOpen(false)}
+          navLinks={navLinks}
+          ctaLabel={ctaLabel}
+          activeHref={activeHref}
+          language={language}
+          onLanguageChange={handleLanguageChange}
+        />
+      )}
     </>
   );
 }

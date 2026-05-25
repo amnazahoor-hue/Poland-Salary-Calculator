@@ -1,6 +1,5 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { Calculator, FileText, MousePointerClick, Wallet } from "lucide-react";
 import { useLanguage } from "@/components/language/LanguageProvider";
 import Card from "@/components/ui/Card";
@@ -106,12 +105,8 @@ export default function HowItWorksSection() {
             const StepIcon = stepIcons[index];
 
             return (
-            <motion.div
+            <div
               key={step.number}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.1, duration: 0.5 }}
             >
               <Card className="group relative flex h-full flex-col items-center overflow-hidden bg-white/95 text-center sm:items-start sm:text-left">
                 <div className="absolute -right-12 -top-12 h-24 w-24 rounded-full bg-secondary/10 transition-transform duration-300 group-hover:scale-125 sm:-right-10 sm:-top-10 sm:h-28 sm:w-28" />
@@ -126,7 +121,7 @@ export default function HowItWorksSection() {
                   {step.description}
                 </p>
               </Card>
-            </motion.div>
+            </div>
             );
           })}
         </div>

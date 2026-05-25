@@ -1,6 +1,5 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { CheckCircle, Send } from "lucide-react";
 import { useState } from "react";
 import Button from "@/components/ui/Button";
@@ -68,11 +67,7 @@ export default function ContactForm() {
 
   if (submitted) {
     return (
-      <motion.div
-        initial={{ opacity: 0, scale: 0.95 }}
-        animate={{ opacity: 1, scale: 1 }}
-        className="rounded-[1.75rem] border border-accent/25 bg-accent/10 p-8 text-center shadow-card"
-      >
+      <div className="rounded-[1.75rem] border border-accent/25 bg-accent/10 p-8 text-center shadow-card">
         <div className="mx-auto mb-5 grid h-16 w-16 place-items-center rounded-2xl bg-accent/10">
           <CheckCircle className="text-accent" size={42} />
         </div>
@@ -82,7 +77,7 @@ export default function ContactForm() {
         <p className="text-text-secondary">
           Dziękujemy za kontakt. Odpowiemy w ciągu 1–2 dni roboczych.
         </p>
-      </motion.div>
+      </div>
     );
   }
 

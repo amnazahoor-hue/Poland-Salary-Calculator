@@ -1,6 +1,5 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { ArrowLeftRight, Building2, Receipt } from "lucide-react";
 import { useLanguage } from "@/components/language/LanguageProvider";
 import Card from "@/components/ui/Card";
@@ -77,12 +76,8 @@ export default function InfoCardsSection() {
             const InfoIcon = infoIcons[index];
 
             return (
-            <motion.div
+            <div
               key={card.title}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.1 }}
             >
               <Card hover className="flex h-full flex-col items-center overflow-hidden text-center md:items-start md:text-left">
                 <div className="mb-5 inline-flex w-fit rounded-2xl bg-accent/10 p-3">
@@ -94,7 +89,7 @@ export default function InfoCardsSection() {
                 </p>
                 <div className="mt-6 h-1.5 w-16 rounded-full bg-gradient-to-r from-secondary to-accent" />
               </Card>
-            </motion.div>
+            </div>
             );
           })}
         </div>

@@ -1,6 +1,5 @@
 "use client";
 
-import { AnimatePresence, motion } from "framer-motion";
 import {
   BadgePercent,
   Calculator,
@@ -565,16 +564,8 @@ export default function CalculatorSection() {
               </div>
             </div>
 
-            <AnimatePresence mode="wait">
-              {showResults && results ? (
-                <motion.div
-                  key="results"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: 20 }}
-                  transition={{ duration: 0.4 }}
-                  className="overflow-hidden rounded-[1.5rem] border border-border/70 bg-white/90"
-                >
+            {showResults && results ? (
+              <div className="overflow-hidden rounded-[1.5rem] border border-border/70 bg-white/90">
                   <div className="bg-gradient-to-br from-primary via-secondary to-accent px-6 py-6 text-white">
                     <p className="mb-2 text-sm font-semibold text-white/75">
                       {copy.netSalary}
@@ -639,15 +630,9 @@ export default function CalculatorSection() {
                       </div>
                     </div>
                   </div>
-                </motion.div>
-              ) : (
-                <motion.div
-                  key="empty"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  className="space-y-4"
-                >
+              </div>
+            ) : (
+              <div className="space-y-4">
                   {copy.emptyItems.map((item) => (
                     <div
                       key={item}
@@ -665,9 +650,8 @@ export default function CalculatorSection() {
                       {copy.readyDescription}
                     </p>
                   </div>
-                </motion.div>
-              )}
-            </AnimatePresence>
+              </div>
+            )}
           </div>
         </div>
       </div>

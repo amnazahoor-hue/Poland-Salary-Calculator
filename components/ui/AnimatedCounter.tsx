@@ -1,7 +1,6 @@
 "use client";
 
-import { motion, useSpring, useTransform } from "framer-motion";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 interface AnimatedCounterProps {
   from?: number;
@@ -20,18 +19,35 @@ export default function AnimatedCounter({
   prefix = "",
   className = "",
 }: AnimatedCounterProps) {
-  const spring = useSpring(from, { duration: duration * 1000, bounce: 0 });
-  const display = useTransform(spring, (value) => {
-    const formatted = new Intl.NumberFormat("pl-PL", {
-      minimumFractionDigits: 2,
-      maximumFractionDigits: 2,
-    }).format(value);
-    return `${prefix}${formatted}${suffix}`;
-  });
+  const [value, setValue] = useState(from);
 
   useEffect(() => {
-    spring.set(to);
-  }, [spring, to]);
+    let frameId = 0;
+    const startTime = performance.now();
+    const durationMs = duration * 1000;
 
-  return <motion.span className={className}>{display}</motion.span>;
+    const tick = (currentTime: number) => {
+      const progress = Math.min((currentTime - startTime) / durationMs, 1);
+      const easedProgress = 1 - Math.pow(1 - progress, 3);
+
+      setValue(from + (to - from) * easedProgress);
+
+      if (progress < 1) {
+        frameId = requestAnimationFrame(tick);
+      }
+    };
+
+    frameId = requestAnimationFrame(tick);
+
+    return () => cancelAnimationFrame(frameId);
+  }, [duration, from, to]);
+
+  const formatted = new Intl.NumberFormat("pl-PL", {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  }).format(value);
+
+  const display = `${prefix}${formatted}${suffix}`;
+
+  return <span className={className}>{display}</span>;
 }

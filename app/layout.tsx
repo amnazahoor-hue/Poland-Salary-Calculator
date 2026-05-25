@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { DM_Sans, Sora } from "next/font/google";
+import Script from "next/script";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { LanguageProvider } from "@/components/language/LanguageProvider";
@@ -26,6 +27,9 @@ export const metadata: Metadata = {
   },
 };
 
+const gaId = process.env.NEXT_PUBLIC_GA_ID;
+const clarityId = process.env.NEXT_PUBLIC_CLARITY_ID;
+
 export default function RootLayout({
   children,
 }: {
@@ -33,34 +37,34 @@ export default function RootLayout({
 }) {
   return (
     <html lang="pl" className={`${sora.variable} ${dmSans.variable}`}>
-      <head>
-        <script
-          async
-          src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"
-        />
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-              gtag('config', 'G-XXXXXXXXXX');
-            `,
-          }}
-        />
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
+      <body className="min-h-screen mesh-bg">
+        {gaId ? (
+          <>
+            <Script
+              src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}
+              strategy="lazyOnload"
+            />
+            <Script id="google-analytics" strategy="lazyOnload">
+              {`
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', '${gaId}');
+              `}
+            </Script>
+          </>
+        ) : null}
+        {clarityId ? (
+          <Script id="microsoft-clarity" strategy="lazyOnload">
+            {`
               (function(c,l,a,r,i,t,y){
                 c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
                 t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
                 y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-              })(window, document, "clarity", "script", "CLARITY_PROJECT_ID");
-            `,
-          }}
-        />
-      </head>
-      <body className="min-h-screen mesh-bg">
+              })(window, document, "clarity", "script", "${clarityId}");
+            `}
+          </Script>
+        ) : null}
         <LanguageProvider>
           <Header />
           <main>{children}</main>

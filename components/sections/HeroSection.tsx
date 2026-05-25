@@ -1,6 +1,5 @@
 "use client";
 
-import { motion } from "framer-motion";
 import {
   ArrowDown,
   BadgeCheck,
@@ -13,19 +12,6 @@ import {
 import Button from "@/components/ui/Button";
 import AnimatedCounter from "@/components/ui/AnimatedCounter";
 import { useLanguage } from "@/components/language/LanguageProvider";
-
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.15 },
-  },
-};
-
-const itemVariants = {
-  hidden: { opacity: 0, y: 30 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
-};
 
 const highlightIcons = [BadgeCheck, FileCheck2, Layers3] as const;
 
@@ -123,39 +109,33 @@ export default function HeroSection() {
       <div className="orb bottom-4 left-1/2 h-72 w-72 bg-gold/20" />
 
       <div className="relative mx-auto grid w-full max-w-7xl flex-1 items-center gap-10 lg:grid-cols-5 lg:gap-6 xl:gap-12">
-        <motion.div
+        <div
           className="text-center lg:col-span-3 lg:text-left"
-          variants={containerVariants}
-          initial="hidden"
-          animate="visible"
         >
-          <motion.div variants={itemVariants} className="section-kicker">
+          <div className="section-kicker">
             <Sparkles size={14} />
             {copy.kicker}
-          </motion.div>
+          </div>
 
-          <motion.h1
-            variants={itemVariants}
+          <h1
             className="mx-auto mb-4 max-w-4xl text-[38px] font-bold text-text-primary md:text-[54px] lg:mx-0 lg:mb-3 lg:text-[38px] lg:leading-[1.06] xl:mb-4 xl:text-[58px]"
           >
             {copy.title}
-          </motion.h1>
+          </h1>
 
-          <motion.p
-            variants={itemVariants}
+          <p
             className="mx-auto mb-4 max-w-2xl font-heading text-[18px] font-medium leading-7 text-text-secondary md:text-[22px] md:leading-8 lg:mx-0 lg:mb-3 lg:text-[15px] lg:leading-6 xl:mb-4 xl:text-[22px] xl:leading-8"
           >
             {copy.subtitle}
-          </motion.p>
+          </p>
 
-          <motion.p
-            variants={itemVariants}
+          <p
             className="mx-auto mb-6 max-w-2xl text-[14px] leading-6 text-text-secondary md:text-[15px] lg:mx-0 lg:mb-3 lg:text-[12px] lg:leading-[1.45] xl:mb-6 xl:text-[15px] xl:leading-6"
           >
             {copy.description}
-          </motion.p>
+          </p>
 
-          <motion.div variants={itemVariants} className="flex flex-col justify-center gap-3 sm:flex-row lg:justify-start lg:gap-2 xl:gap-3">
+          <div className="flex flex-col justify-center gap-3 sm:flex-row lg:justify-start lg:gap-2 xl:gap-3">
             <Button size="lg" onClick={scrollToCalculator} className="lg:px-5 lg:py-3 lg:text-xs xl:px-8 xl:py-4 xl:text-base">
               {copy.primaryCta}
               <ArrowDown size={18} />
@@ -163,10 +143,9 @@ export default function HeroSection() {
             <Button size="lg" variant="outline" onClick={scrollToCalculator} className="lg:px-5 lg:py-3 lg:text-xs xl:px-8 xl:py-4 xl:text-base">
               {copy.secondaryCta}
             </Button>
-          </motion.div>
+          </div>
 
-          <motion.div
-            variants={itemVariants}
+          <div
             className="mt-6 grid items-stretch gap-3 sm:grid-cols-3 lg:mt-3 lg:gap-2 xl:mt-6 xl:gap-3"
           >
             {copy.highlights.map((highlight, index) => {
@@ -194,18 +173,13 @@ export default function HeroSection() {
               </div>
               );
             })}
-          </motion.div>
-        </motion.div>
+          </div>
+        </div>
 
-        <motion.div
+        <div
           className="lg:col-span-2"
-          initial={{ opacity: 0, scale: 0.95 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.6, delay: 0.3 }}
         >
-          <motion.div
-            animate={{ y: [0, -8, 0] }}
-            transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+          <div
             className="glass-card relative overflow-hidden rounded-[2rem] p-5 md:p-6 lg:p-3 xl:p-6"
           >
             <div className="absolute -right-10 -top-10 h-40 w-40 rounded-full bg-secondary/20" />
@@ -263,8 +237,8 @@ export default function HeroSection() {
                 </div>
               </div>
             </div>
-          </motion.div>
-        </motion.div>
+          </div>
+        </div>
       </div>
     </section>
   );

@@ -1,6 +1,5 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { Calculator } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -31,11 +30,7 @@ export default function MobileMenu({
   };
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: -10 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: -10 }}
-      transition={{ duration: 0.2 }}
+    <div
       className="fixed inset-x-4 top-[66px] z-40 overflow-hidden rounded-3xl border border-white/10 bg-primary/95 shadow-elevated backdrop-blur-xl lg:hidden"
     >
       <nav className="flex flex-col gap-2 p-3" aria-label="Menu mobilne">
@@ -80,6 +75,6 @@ export default function MobileMenu({
           ))}
         </div>
       </nav>
-    </motion.div>
+    </div>
   );
 }
